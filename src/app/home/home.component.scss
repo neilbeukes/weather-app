@@ -1,0 +1,24 @@
+.top-bar {
+    background-color: #424242;
+  .cities {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+
+    .heading {
+      font-size: larger;
+    }
+  }
+
+
+  .search {
+    width: 30%;
+    margin-top: 28px;
+    display: flex;
+    justify-content: center;
+
+    .input-control {
+      width: 80%;
+    }
+  }
+}

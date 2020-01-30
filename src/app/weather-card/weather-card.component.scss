@@ -1,0 +1,127 @@
+.weather-card {
+  width: 900px;
+
+  .header {
+    justify-content: space-between;
+    display: flex;
+  }
+
+  .header-item {
+    display: inline-block;
+    width: auto;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .content {
+    padding-top: 24px;
+
+    .current-temp-icon {
+      height: 75px;
+      width: 75px;
+      padding-left: 35px;
+      margin-top: 0px;
+    }
+
+    .degrees {
+      font-size: 26px;
+      font-weight: 600;
+      margin-top: 8px
+    }
+
+    .temperature {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .weather-subheader {
+      font-size: 18px;
+    }
+  }
+  .footer {
+    .small-icon {
+      height: 45px;
+      width: 45px;
+    }
+
+    .outer-container {
+      display: block;
+      padding: 16px;
+      width: 90%;
+      margin-left: 4px;
+      margin-right: 4px;
+      background-color: #5f5f5f42;
+      padding-top: 24px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-evenly;
+      padding: 6px;
+    }
+
+    .temps {
+      font-size: 14px;
+      font-weight: 600;
+      .min {
+        color: #03a9f4;
+      }
+      .max {
+        color: #d32f2f;
+      }
+    }
+
+    .label {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+}
+
+.error-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+
+  .icon{
+    height: 100px;
+    width: 100px;
+  }
+}
+
+
+// Loader css
+
+.loader-div {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 74px;
+  height: 74px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

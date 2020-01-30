@@ -1,0 +1,76 @@
+<mat-card class="weather-card">
+  <div *ngIf="!weatherData && !error" class="loader-div">
+    <div class="lds-dual-ring"></div>
+  </div>
+  <div *ngIf="error" class="error-div">
+    <img mat-card-image class="icon" src="/assets/404.svg">
+  </div>
+  <div *ngIf="weatherData && !error">
+    <div class="header">
+      <div class="header-item">
+        <mat-card-title>{{weatherData.name}}</mat-card-title>
+        <mat-card-subtitle>{{weatherData.sys.country}}</mat-card-subtitle>
+      </div>
+      <div class="header-item">
+        {{todaysDate}}
+      </div>
+    </div>
+    <mat-card-content class="content">
+      <mat-grid-list cols="8" rowHeight="100px">
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <div class="temperature">
+            <div><img mat-card-image class="current-temp-icon" [src]="iconService.getIcon(weatherData.weather[0].icon)"></div>
+            <div class="degrees">{{weatherData.main.temp | temperature | number : '1.0-0'}} &deg;C</div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="6" [rowspan]="3">
+          <canvas baseChart [colors]="chartColors" width="500" height="300" [datasets]="labelMFL"
+            [labels]="lineChartLabels" [options]="lineChartOptions" [chartType]="ChartType"></canvas>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="2">
+          <mat-list>
+            <h3 mat-subheader class="weather-subheader">{{weatherData.weather[0].description}}</h3>
+            <mat-divider></mat-divider>
+            <mat-list-item>
+              <mat-icon mat-list-icon><img class="list-icon" src="/assets/weather-icons/wind-1.svg"></mat-icon>
+              <h4 mat-line>{{weatherData.wind.speed}} m/s</h4>
+              <p mat-line>{{weatherData.wind.deg}} degrees</p>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon mat-list-icon><img class="list-icon" src="/assets/weather-icons/rain-3.svg"></mat-icon>
+              <h4 mat-line>Humidity {{weatherData.main.humidity}}%</h4>
+            </mat-list-item>
+          </mat-list>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-footer class="footer">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="border-top">
+          <mat-panel-title class="expand-title">
+            4-Day weather forecast
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="4" rowHeight="160px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1" *ngFor="let day of forecastDays">
+            <div class="outer-container">
+              <div class="container">
+                <img mat-card-image class="small-icon" [src]="iconService.getIcon(day.iconId)">
+                <div class="label">{{day.date}} </div>
+              </div>
+              <div class="container">
+                <div class="temps">
+                  <span class="max">{{day.max | temperature | number : '1.0-0' }}&deg;C </span>/
+                  <span class="min"> {{day.min | temperature | number : '1.0-0'}}&deg;C</span>
+                </div>
+              </div>
+              <div class="container">
+                <div class="label">{{day.description}}</div>
+              </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-expansion-panel>
+    </mat-card-footer>
+  </div>
+</mat-card>
